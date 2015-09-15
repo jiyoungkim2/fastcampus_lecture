@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+
+<head>
+   <meta charset="utf-8">
+</head>
+
+
+<body>
+    
+    <script>
+        
+        
+        /* 1번 */
+        var numbers = new Array(100,200,300);
+        // =  var numbers = [100,200,300]; 
+        
+        console.log(numbers);
+        console.log(numbers.length);
+        
+        /* 2번 */
+        var nested = new Array([1,2,3], ["가","나","다"]); 
+        // var nested = [[1,2,3],['가','나','다']];
+        
+        console.log(nested);
+        console.log(nested.length);
+        
+        /* 3번 */
+        var 수강생 = new Object();
+        수강생.이름 = '';
+        수강생.성별 = '';
+        수강생.개발자 = false;
+        
+        /* = var obj = {
+            이름: "김지영",
+            성별: "여",
+            개발자: Boolean
+        }; */
+        
+        console.log(수강생.이름);
+        console.log(수강생.성별);
+        console.log(수강생.개발자);
+        
+        var arr = [10,20,30,40,50,60];
+        
+        /* 4번 */
+        function 원소(array, where) {
+         //실행할 것 어레이 인수값위치의 값 출력
+            console.log(array[where]);
+            return array[where];
+        }
+        
+        /* 5번 */
+        function 세제곱(number) {
+            var three = number * number * number;
+            console.log(three);
+            return three;
+        }
+        
+        /* 6번 */
+        function 날짜(today) {
+            var 요일 = ['월', '화', '수', '목', '금', '토', '일'];
+            var date = today.getDate();
+            var month = today.getMonth();
+            var year = today.getFullYear();
+            var day = today.getDay();
+            
+
+            var result = year +'년 '+month+'월 '+date+'일 '+'('+요일[day]+')';
+            console.log(result);
+            return result;
+        }
+    
+    </script>
+    숙제하자 
+
+</body>
+    
+     
