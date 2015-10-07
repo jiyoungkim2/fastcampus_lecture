@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width">
     <meta charset="utf-8"> 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <title>10월 7일 수업 @_@</title>
@@ -25,26 +26,44 @@
         */
             
         //박스를 누를때를 감지함
-            
-        $('#box').on('mousedown',function(event){
+        
+        
+        $('#box').on('mousedown touchstart',function(event){
             var top = parseInt($(this).css('top')), left = parseInt($(this).css('left'));
-            var startX = event.pageX, startY = event.pageY;
+            var startX = pageX(event), startY = pageY(event);
             var $box = $(this);
             
+            console.log(startX, startY); //dom에서 주는 원래의 값?
             event.preventDefault();
+            
             console.log(top, left, event.pageX, event.pageY);
             
-            $(document).on('mousemove.drag', function(event){
-                var dx = event.pageX - startX, dy = event.pageY - startY;
+            $(document).on('mousemove.drag touchmove', function(event){
+                var dx = pageX(event) - startX, dy = pageY(event) - startY;
                 var newTop = top + dy, newLeft = left + dx;
                 $box.css({top:newTop, left:newLeft});
             });
             
-            $(document).on('mouseup.drag', function(event){
-                $(this).off('mousemove.drag mouseup.drag');
+            $(document).on('mouseup.drag touchend', function(event){
+                $(this).off('mousemove.drag mouseup.drag ');
             });
         
         });
+            
+        function pageX(event) {
+            if (event.pageX) { 
+                return event.pageX;
+            } else {
+                return event.originalEvent.touches[0].pageX;
+            }        
+        }
+        function pageY(event) { //모바일은 undefined고 falsy라서 가능
+            if (event.pageY) { 
+                return event.pageY;
+            } else {
+                return event.originalEvent.touches[0].pageY;
+            }        
+        }
             
         });
     </script>
@@ -85,3 +104,6 @@ fadein, fadeout, fadeToggle
 이벤트 객체의 기본동작을 취소한다 >> event.preventDefault()
 
 이벤트.namespace 다른 이벤트동작과 겹칠수 있으므로 아이디 지정하는거 같은 기능
+
+mousedown mousemove mouseup
+모바일 touchstart touchmove touchend
