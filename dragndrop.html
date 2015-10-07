@@ -45,7 +45,7 @@
             });
             
             $(document).on('mouseup.drag touchend', function(event){
-                $(this).off('mousemove.drag mouseup.drag ');
+                $(this).off('mousemove.drag mouseup.drag touchmove.drat touchend.drag');
             });
         
         });
