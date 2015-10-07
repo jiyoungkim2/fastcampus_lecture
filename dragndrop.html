@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <title>10월 7일 수업 @_@</title>
+    
+    <script>
+        jQuery(function($){
+        /*    
+        function righttop(){
+            $('#box').animate({left:'100px'}, rightbottom);}
+            
+        function rightbottom(){
+            $('#box').animate({top:'100px'}, leftbottom);}
+        function leftbottom(){
+            $('#box').animate({left:'0px'}, lefttop);}
+        function lefttop(){
+            $('#box').animate({top:'0px'}, righttop); }   
+        righttop();
+            
+        $('button').on('Click', function(event){
+            $('#box').stop();    
+        });   //왜 안멈춤? 
+        */
+            
+        //박스를 누를때를 감지함
+            
+        $('#box').on('mousedown',function(event){
+            var top = parseInt($(this).css('top')), left = parseInt($(this).css('left'));
+            var startX = event.pageX, startY = event.pageY;
+            var $box = $(this);
+            
+            event.preventDefault();
+            console.log(top, left, event.pageX, event.pageY);
+            
+            $(document).on('mousemove.drag', function(event){
+                var dx = event.pageX - startX, dy = event.pageY - startY;
+                var newTop = top + dy, newLeft = left + dx;
+                $box.css({top:newTop, left:newLeft});
+            });
+            
+            $(document).on('mouseup.drag', function(event){
+                $(this).off('mousemove.drag mouseup.drag');
+            });
+        
+        });
+            
+        });
+    </script>
+    
+    <style>
+        #box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        top: 10px;
+        left: 10px;
+            background: green;
+        }
+    
+    </style>
+
+
+</head>
+
+<body>
+    <div id="box"></div>
+    <button>멈추어라</button>
+
+</body>
+</html>
+
+<!--
+show, hide, toggle
+slideup, slidedown, slideToggle
+fadein, fadeout, fadeToggle
+.slideUp(5000).slideDown(5000); 점으로 연결해서 동작할수도
+
+.stop(); 애니메이션 멈춤
+.finish(); 맨 끝으로 감
+
+.delay()를 삽입할수도 
+
+이벤트 객체의 기본동작을 취소한다 >> event.preventDefault()
+
+이벤트.namespace 다른 이벤트동작과 겹칠수 있으므로 아이디 지정하는거 같은 기능
